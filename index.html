@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function | Randika Saptianda</title>
+  </head>
+  <body>
+    <script>
+      // menampilkan peraturan game pada popup box
+      alert("Selamat Datang Di Game Tebak Angka!");
+      alert("Kamu diminta untuk menebak angka 1-3. \ndan kamu akan bermain dalam 5 ronde. \nPlayer yang berhasil menebak angka paling banyak akan menang. \nSELAMAT BERMAIN!!!");
+
+      var pointsNo1 = 0;
+      var pointsNo2 = 0;
+      var tanya = true;
+      while (tanya) {
+        //menentukan banyaknya ronde permainan
+        var i = 1;
+        while (i <= 5) {
+          alert("Ronde " + i);
+          // menentukan angka random
+          var angka = Math.floor(Math.random() * 3) + 1;
+
+          // menangkap tebakan angka player
+          var p1 = prompt("Player 1: masukkan angka dari 1-3.");
+          var p2 = prompt("Player 2: masukkan angka dari 1-3.");
+
+          var numbers = /^[0-9]+$/;
+          if (p1.match(numbers) && p2.match(numbers)) {
+            //alert('Your Registration number has accepted....');
+            //return true;
+          } else {
+            alert("Please input numeric characters only!");
+            alert("Ulangi?");
+            continue;
+          }
+
+          // menentukan rules
+
+          if (p1 < 1 || p1 > 3 || p2 < 1 || p2 > 3) {
+            alert("Angka yang dimasukkan tidak sesuai! \nHANYA pilihan angka dari 1-3.");
+            alert("Ulangi?");
+            continue;
+          } else if (p1 == p2) {
+            alert("Angka yang dimasukkan tidak boleh sama!!!");
+            alert("Ulangi?");
+            continue;
+          } else if (p1 == angka) {
+            pointsNo1 += 1;
+            // var pointsNumber = +document.getElementById('points-number').innerHTML;
+            var result = +document.getElementById("points-number");
+            result.innerHTML = pointsNo1;
+            alert("Player 1 Menang");
+            alert("Angka yang dicari adalah : " + angka + "\n--------------------------- \nPlayer 1: " + pointsNo1 + "\nPlayer 2: " + pointsNo2);
+          } else if (p2 == angka) {
+            pointsNo2 += 1;
+            // var pointsNumber2 = +document.getElementById('points-number').innerHTML;
+            var result = +document.getElementById("points-number");
+            result.innerHTML = pointsNo2;
+            alert("Player 2 Menang");
+            alert("Angka yang dicari adalah : " + angka + "\n--------------------------- \nPlayer 1: " + pointsNo1 + "\nPlayer 2: " + pointsNo2);
+          } else {
+            alert("Tidak ada yang benar. Hasilnya SERI!");
+            alert("Angka yang dicari adalah : " + angka + "\n--------------------------- \nPlayer 1: " + pointsNo1 + "\nPlayer 2: " + pointsNo2);
+          }
+
+          i++;
+        }
+
+        // peraturan score
+        if (pointsNo1 > pointsNo2) {
+          alert("Score player 1 UNGGUL! \n-------------------------------- \nSelamat Player 1 Memenangkan Pertandingan");
+        } else if (pointsNo1 < pointsNo2) {
+          alert("Score player 2 UNGGUL! \n-------------------------------- \nSelamat Player 2 Memenangkan Pertandingan");
+        } else {
+          alert("Score kedua player adalah SERI!");
+        }
+        tanya = confirm("Main Lagi?");
+      }
+      alert("Terima kasih sudah bermain.");
+    </script>
+  </body>
+</html>
